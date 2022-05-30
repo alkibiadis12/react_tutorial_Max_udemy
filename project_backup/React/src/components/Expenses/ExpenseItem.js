@@ -14,6 +14,7 @@ const ExpenseItem = (props) => {
   //kai h deuteri timi einai ena function setTitle
 
   return (
+    <li>
     <Card className="expense-item">
       <ExpenseDate date={props.date} />
       <div className="expense-item__description">
@@ -21,6 +22,7 @@ const ExpenseItem = (props) => {
       </div>
       <div className="expense-item__price">${props.amount}</div>
     </Card> 
+    </li>
   );
 }
 

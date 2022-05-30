@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
-  const [enteredTitle, setEnteredTitle] = useState('');
-  const [enteredAmount, setEnteredAmount] = useState('');
-  const [enteredDate, setEnteredDate] = useState('');
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
 
   //gia na min exw ksexorista states borw na doulepsw me object
   /* 
@@ -58,8 +58,8 @@ const ExpenseForm = (props) => {
     //enw emeis theloyme na xeiristoume to apotelesma me js
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
-      date: new Date(enteredDate)
+      amount: +enteredAmount,
+      date: new Date(enteredDate),
     };
 
     props.onSaveExpenseData(expenseData);
@@ -69,17 +69,23 @@ const ExpenseForm = (props) => {
     //gia na doulepsei
     //legete two way binding kai einai poli simantiko
     //eidika sta form
-    setEnteredTitle('');
-    setEnteredAmount('');
-    setEnteredDate('');
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
   };
+
+
 
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -103,6 +109,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={props.onCancelButtonHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>

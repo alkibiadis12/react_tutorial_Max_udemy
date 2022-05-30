@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
+import AddNewExpenseForm from "./AddNewExpenseForm";
 
 const NewExpense = (props) => {
   
@@ -11,11 +12,36 @@ const NewExpense = (props) => {
       };
       props.onAddExpense(expenseData);
   };
+  
+ // --------------------------------------------- 
+
+ const [controlExpensePage, setControlExpensePage] = useState(true);
+  // true = AddNewExpenseForm
+  // false = Expenseform
+  
+  const addNewExpenseFormButtonHandler = () => {
+    setControlExpensePage(false);
+    console.log("clicked");
+  }
+
+  const cancelButtonHandler = () => {
+    setControlExpensePage(true);
+  }
+
+  let controlJSX = {}
+  if (controlExpensePage) {
+    controlJSX = <AddNewExpenseForm onAddNewExpenseFormButtonHandler = {addNewExpenseFormButtonHandler} />
+  }else {
+    controlJSX = <ExpenseForm onSaveExpenseData = {saveExpenseDateHandler} onCancelButtonHandler ={cancelButtonHandler}/>
+  }
+
+
+
 
   return (
     <div className="new-expense">
-        <ExpenseForm onSaveExpenseData = {saveExpenseDateHandler} />
-    </div>
+        {controlJSX}
+     </div>
   );
 };
 

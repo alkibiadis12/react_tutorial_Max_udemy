@@ -2,6 +2,7 @@ import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 import React, { useState } from "react";
 
+
 const dummyExpenses = [
     {
       id: "e1",
@@ -50,6 +51,8 @@ function App() {
     setExpenses (prevExpenses => {
         return [expense, ...prevExpenses];
     });
+
+
   };
 
   //----------------------------------------------------
